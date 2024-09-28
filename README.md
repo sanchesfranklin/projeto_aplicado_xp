@@ -1,2 +1,2 @@
-# projeto_aplicado_xp
+# ETL Automatizado com Airflow
 Projeto Aplicado da Pós Graduação em Engenharia de Dados da XP
