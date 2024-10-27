@@ -292,7 +292,7 @@ services:
                 condition: service_completed_successfully
 
     postgres_olapp:
-        image: postgres:latest
+        image: postgres:16
         restart: always
         environment:
           - POSTGRES_USER=airflow
@@ -306,34 +306,7 @@ services:
             max-size: 10m
             max-file: "3"
         ports:
-          - '5460:5460'
-
-    spark:
-        image: bitnami/spark:3.1.2
-        user: root # Run container as root container: https://docs.bitnami.com/tutorials/work-with-non-root-containers/
-        hostname: spark
-        environment:
-            - SPARK_MODE=master
-            - SPARK_RPC_AUTHENTICATION_ENABLED=no
-            - SPARK_RPC_ENCRYPTION_ENABLED=no
-            - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-            - SPARK_SSL_ENABLED=no
-        ports:
-            - "8181:8080"
-            - "7077:7077"
-
-    spark-worker:
-        image: bitnami/spark:3.1.2
-        user: root
-        environment:
-            - SPARK_MODE=worker
-            - SPARK_MASTER_URL=spark://spark:7077
-            - SPARK_WORKER_MEMORY=1G
-            - SPARK_WORKER_CORES=1
-            - SPARK_RPC_AUTHENTICATION_ENABLED=no
-            - SPARK_RPC_ENCRYPTION_ENABLED=no
-            - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-            - SPARK_SSL_ENABLED=no
+          - '5460:5432'
 
 volumes:
     postgres-db-volume:
